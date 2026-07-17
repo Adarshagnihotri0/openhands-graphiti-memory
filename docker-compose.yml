@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: graphiti_neo4j
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=1G
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+    networks:
+      - graphiti_network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  graphiti-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graphiti_mcp_server
+    ports:
+      - "8000:8000"
+    environment:
+      - GRAPHITI_DATABASE_PROVIDER=neo4j
+      - GRAPHITI_DATABASE_URI=bolt://neo4j:7687
+      - GRAPHITI_DATABASE_USER=neo4j
+      - GRAPHITI_DATABASE_PASSWORD=password
+      - GRAPHITI_LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - GRAPHITI_LLM_MODEL=${LLM_MODEL:-gpt-4o-mini}
+      - GRAPHITI_LLM_API_KEY=${LLM_API_KEY}
+      - GRAPHITI_LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.0}
+      - GRAPHITI_EMBEDDER_PROVIDER=${EMBEDDER_PROVIDER:-openai}
+      - GRAPHITI_EMBEDDER_MODEL=${EMBEDDER_MODEL:-text-embedding-3-small}
+      - GRAPHITI_GROUP_ID=${GROUP_ID:-openhands_main}
+      - GRAPHITI_REPOSITORY_SCOPE=${REPOSITORY:-default}
+      - GRAPHITI_BRANCH_SCOPE=${BRANCH:-main}
+      - GRAPHITI_LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - GRAPHITI_SEMAPHORE_LIMIT=${SEMAPHORE_LIMIT:-10}
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    networks:
+      - graphiti_network
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
+
+networks:
+  graphiti_network:
+    driver: bridge
