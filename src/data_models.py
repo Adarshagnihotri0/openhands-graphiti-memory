@@ -1,6 +1,4 @@
-"""
-Milestone 1: Core Data Models
-"""
+"""Core data models for memory system."""
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
@@ -57,9 +55,6 @@ class MemoryConfig:
 
 
 if __name__ == "__main__":
-    print("Testing Milestone 1: Core Models")
-    
-    # Test Memory
     m = Memory(
         id="test-1",
         title="Auth",
@@ -71,9 +66,7 @@ if __name__ == "__main__":
         branch="main"
     )
     assert m.confidence == 0.95
-    print("✅ Memory works")
     
-    # Test validation
     try:
         Memory(
             id="test-2",
@@ -87,9 +80,8 @@ if __name__ == "__main__":
         )
         assert False
     except ValueError:
-        print("✅ Validation works")
+        pass
     
-    # Test RetrievalContext
     ctx = RetrievalContext(
         task="Fix auth",
         repository="myorg/myapp",
@@ -97,11 +89,7 @@ if __name__ == "__main__":
         workspace_path="/tmp"
     )
     assert ctx.repository == "myorg/myapp"
-    print("✅ RetrievalContext works")
     
-    # Test MemoryConfig
     cfg = MemoryConfig(max_tokens=1000)
     assert cfg.max_tokens == 1000
-    print("✅ MemoryConfig works")
-    
-    print("\n✅ MILESTONE 1 COMPLETE")
+

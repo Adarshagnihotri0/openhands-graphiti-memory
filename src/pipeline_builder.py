@@ -1,5 +1,5 @@
 """
-Milestone 3: ContextBuilder with token budgeting
+CoreContextBuilder with token budgeting
 """
 from collections import defaultdict
 from milestone1_models import Memory, MemoryConfig
@@ -79,7 +79,7 @@ class ContextBuilder:
 if __name__ == "__main__":
     from milestone1_models import MemoryCategory
     
-    print("Testing Milestone 3: ContextBuilder")
+    print("Testing CoreContextBuilder")
     
     config = MemoryConfig(max_tokens=1500)
     builder = ContextBuilder(config)
@@ -122,21 +122,16 @@ if __name__ == "__main__":
     messages = builder.build(memories)
     
     assert len(messages) == 1
-    print(f"✅ Built {len(messages)} message")
     
     assert messages[0].role == "system"
-    print("✅ Message role is system")
     
     content = messages[0].content[0].text
     assert "## Architecture" in content
     assert "## Previous Bugs" in content
     assert "## Conventions" in content
-    print("✅ Structured format correct")
     
     assert "AuthService depends on TokenService" in content
-    print("✅ Memory content present")
     
-    # Test token budgeting
     large_config = MemoryConfig(max_tokens=50)
     small_builder = ContextBuilder(large_config)
     
@@ -160,6 +155,4 @@ if __name__ == "__main__":
     # Should only include memories that fit budget
     total_chars = sum(len(m.summary) for m in budgeted)
     assert total_chars <= 200  # 50 tokens * 4 chars/token
-    print(f"✅ Token budget enforced ({len(budgeted)} memories, {total_chars} chars)")
     
-    print("\n✅ MILESTONE 3 COMPLETE")

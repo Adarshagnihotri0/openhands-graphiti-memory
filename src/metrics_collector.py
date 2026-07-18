@@ -1,5 +1,5 @@
 """
-Milestone 7: Metrics and E2E Integration Test
+CoreMetrics and E2E Integration Test
 """
 import time
 import asyncio
@@ -81,7 +81,7 @@ if __name__ == "__main__":
         view = MockView()
     
     async def test_milestone7():
-        print("Testing Milestone 7: Metrics and E2E Integration")
+        print("Testing CoreMetrics and E2E Integration")
         print("=" * 70)
         
         # 1. Setup complete system
@@ -132,7 +132,6 @@ if __name__ == "__main__":
         for memory in test_memories:
             await backend.store(memory)
         
-        print(f"✅ Stored {len(test_memories)} memories")
         
         # 3. Test successful retrieval
         print("\n3. Testing successful retrieval...")
@@ -148,11 +147,9 @@ if __name__ == "__main__":
         
         assert messages is not None
         assert len(messages) >= 1
-        print(f"✅ Retrieved {len(messages)} message")
         
         # Check metrics
         assert provider.metrics.retrievals == 1
-        print(f"✅ Metrics: {provider.metrics.retrievals} retrieval(s)")
         
         # 4. Test greeting skip
         print("\n4. Testing greeting skip...")
@@ -164,7 +161,6 @@ if __name__ == "__main__":
         
         assert messages is None
         assert provider.metrics.greetings_skipped >= 1
-        print(f"✅ Skipped greeting (total: {provider.metrics.greetings_skipped})")
         
         # 5. Test repository scoping
         print("\n5. Testing repository scoping...")
@@ -184,7 +180,6 @@ if __name__ == "__main__":
         
         provider.metrics.repositories_scoped = 2
         
-        print(f"✅ Repository scoping active ({provider.metrics.repositories_scoped} repos)")
         
         # 6. Performance metrics
         print("\n6. Performance metrics...")
@@ -199,7 +194,6 @@ if __name__ == "__main__":
         # Success criteria
         assert provider.metrics.success_rate >= 0.5, "Success rate too low"
         assert provider.metrics.avg_latency_ms < 1000, "Latency too high"
-        print("\n✅ Performance metrics within bounds")
         
         # 7. E2E Integration Test
         print("\n7. E2E Integration Test...")
@@ -212,24 +206,20 @@ if __name__ == "__main__":
         
         # Verify complete pipeline
         assert messages is not None or provider.metrics.greetings_skipped > 0
-        print("✅ E2E pipeline works")
         
         # Verify memory structure
         if messages and len(messages) > 0:
             content = messages[0].content[0].text
             assert "# Relevant Project Knowledge" in content
             assert "## Architecture" in content
-            print("✅ Memory format correct")
         
         # Verify token budgeting
         if messages and len(messages) > 0:
             total_chars = sum(len(m.content[0].text) for m in messages)
             estimated_tokens = total_chars // 4
             assert estimated_tokens <= config.max_tokens
-            print(f"✅ Token budget enforced ({estimated_tokens} tokens)")
         
         print("\n" + "=" * 70)
-        print("✅ MILESTONE 7 COMPLETE")
         print("=" * 70)
         
         print("\n📊 METRICS SUMMARY:")
@@ -240,7 +230,6 @@ if __name__ == "__main__":
         print(f"  Greetings Skipped: {provider.metrics.greetings_skipped}")
         print(f"  Repositories Scoped: {provider.metrics.repositories_scoped}")
         
-        print("\n✅ ALL MILESTONES COMPLETE")
         print("\nSystem ready for production")
         
         return True

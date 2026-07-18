@@ -1,5 +1,5 @@
 """
-Milestone 5: MemoryProvider orchestration
+CoreMemoryProvider orchestration
 """
 import asyncio
 import logging
@@ -109,7 +109,7 @@ if __name__ == "__main__":
         view = MockView()
     
     async def test_milestone5():
-        print("Testing Milestone 5: MemoryProvider")
+        print("Testing CoreMemoryProvider")
         
         # Setup
         backend = MockBackend()
@@ -130,9 +130,7 @@ if __name__ == "__main__":
             branch="main"
         )
         await backend.store(memory)
-        print("✅ Backend initialized with test memory")
         
-        # Test retrieval
         conversation = None
         state = MockState()
         
@@ -143,26 +141,20 @@ if __name__ == "__main__":
         
         state.view.events = [FakeEvent()]
         
-        # Test memory provider
         messages = await provider.retrieve(conversation, state)
         
         assert messages is not None, "Memory provider returned None"
         assert len(messages) >= 1, f"Expected >= 1 message, got {len(messages)}"
-        print(f"✅ Retrieved {len(messages)} message(s)")
         
         content = messages[0].content[0].text
         assert "AuthService depends on TokenService" in content
-        print("✅ Memory content injected")
         
-        # Test greeting (should skip)
         state.view.events = [FakeEvent()]
         state.view.events[0].content = 'Hi there'
         
         messages = await provider.retrieve(conversation, state)
         assert messages is None, "Should skip greetings"
-        print("✅ Skips greetings correctly")
         
-        # Test timeout
         provider.config.timeout_ms = 1
         
         class SlowBackend(MockBackend):
@@ -182,9 +174,7 @@ if __name__ == "__main__":
         
         messages = await slow_provider.retrieve(conversation, state)
         assert messages is None, "Should timeout gracefully"
-        print("✅ Timeout handled gracefully")
         
-        print("\n✅ MILESTONE 5 COMPLETE")
     
     import asyncio
     asyncio.run(test_milestone5())

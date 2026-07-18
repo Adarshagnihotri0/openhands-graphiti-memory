@@ -1,5 +1,5 @@
 """
-Milestone 11: Feedback Loop Implementation
+CoreFeedback Loop Implementation
 
 Track memory usage and adjust confidence.
 """
@@ -56,7 +56,6 @@ class FeedbackTracker:
         if usage == MemoryUsage.USED:
             # Increase confidence (cap at 1.0)
             adjustment = 1.05
-            print(f"   ✅ Memory {memory_id} WAS USED → confidence × {adjustment}")
             
         elif usage == MemoryUsage.IGNORED:
             # Slight decrease (model didn't reference it)
@@ -90,7 +89,6 @@ async def simulate_task_with_feedback():
     """Simulate a task with feedback tracking."""
     
     print("=" * 70)
-    print("MILESTONE 11: Feedback Loop Implementation")
     print("=" * 70)
     
     # Setup
@@ -213,7 +211,6 @@ async def simulate_task_with_feedback():
     print(f"   - After CONTRADICTED: 0.425 (×0.85)")
     print(f"   - Will be marked for review")
     
-    # Test ignored scenario
     print("\n7. Testing IGNORED scenario...")
     
     # Simulate task where memory is retrieved but not used
@@ -254,7 +251,6 @@ async def simulate_task_with_feedback():
     backend.close()
     
     print("\n" + "=" * 70)
-    print("✅ MILESTONE 11 COMPLETE")
     print("=" * 70)
     
     print("\nKey Findings:")
@@ -264,8 +260,6 @@ async def simulate_task_with_feedback():
     print("  - CONTRADICTED memories lose confidence quickly")
     print("  - Usage history preserved for analysis")
     
-    print("\n✅ Confidence adjustment working")
-    print("✅ Feedback loop PROVEN")
 
 
 if __name__ == "__main__":

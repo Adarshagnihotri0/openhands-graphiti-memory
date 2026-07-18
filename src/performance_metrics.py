@@ -1,5 +1,5 @@
 """
-Milestone 10: Measure Repository Rediscovery Reduction
+CoreMeasure Repository Rediscovery Reduction
 
 THE MOST IMPORTANT METRIC - Does memory actually HELP?
 """
@@ -152,7 +152,6 @@ async def test_repository_rediscovery():
     """Measure repository rediscovery reduction."""
     
     print("=" * 70)
-    print("MILESTONE 10: Repository Rediscovery Reduction")
     print("=" * 70)
     
     # Setup
@@ -251,19 +250,16 @@ async def test_repository_rediscovery():
     success = True
     
     if reduction['files_opened'] >= 50:
-        print(f"   ✅ Files opened reduction >= 50%")
     else:
         print(f"   ❌ Files opened reduction < 50%")
         success = False
     
     if reduction['grep_calls'] >= 50:
-        print(f"   ✅ Grep calls reduction >= 50%")
     else:
         print(f"   ❌ Grep calls reduction < 50%")
         success = False
     
     if reduction['time_elapsed'] >= 30:
-        print(f"   ✅ Time reduction >= 30%")
     else:
         print(f"   ❌ Time reduction < 30%")
         success = False
@@ -275,9 +271,7 @@ async def test_repository_rediscovery():
     
     print("\n" + "=" * 70)
     if success:
-        print("✅ MILESTONE 10 COMPLETE")
     else:
-        print("⚠️  MILESTONE 10 PARTIAL")
     print("=" * 70)
     
     print("\nKey Findings:")
@@ -286,8 +280,6 @@ async def test_repository_rediscovery():
     print(f"  - Time: {baseline.time_elapsed_seconds:.1f}s → {with_memory.time_elapsed_seconds:.1f}s (↓{reduction['time_elapsed']:.0f}%)")
     
     if success:
-        print("\n✅ Memory system provides SIGNIFICANT VALUE")
-        print("✅ Repository rediscovery measurably reduced")
     else:
         print("\n⚠️  Memory system needs improvement")
     

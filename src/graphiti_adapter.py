@@ -1,5 +1,5 @@
 """
-Milestone 6: GraphitiBackend (with mock for testing)
+CoreGraphitiBackend (with mock for testing)
 """
 from milestone1_models import Memory, MemoryCategory, RetrievalContext
 from milestone2_backend import MemoryBackend
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     import asyncio
     
     async def test_milestone6():
-        print("Testing Milestone 6: GraphitiBackend")
+        print("Testing CoreGraphitiBackend")
         
         backend = GraphitiBackend(uri="bolt://test:7687", database="test_db")
         
@@ -118,9 +118,7 @@ if __name__ == "__main__":
         )
         await backend.store(m2)
         
-        print(f"✅ Stored {len(backend._mock_memories)} memories")
         
-        # Test repository scoping
         ctx1 = RetrievalContext(
             task="auth",
             repository="myorg/myapp",
@@ -131,9 +129,7 @@ if __name__ == "__main__":
         results1 = await backend.retrieve(ctx1)
         assert len(results1) == 1, f"Expected 1 result, got {len(results1)}"
         assert results1[0].repository == "myorg/myapp"
-        print("✅ Repository scoping works (myorg/myapp)")
         
-        # Test different repository
         ctx2 = RetrievalContext(
             task="test",
             repository="other/repo",
@@ -144,22 +140,12 @@ if __name__ == "__main__":
         results2 = await backend.retrieve(ctx2)
         assert len(results2) == 1
         assert results2[0].repository == "other/repo"
-        print("✅ Repository scoping works (other/repo)")
         
-        # Test cross-contamination prevention
         assert results1[0].id != results2[0].id
-        print("✅ No cross-repository contamination")
         
-        # Test recent changes
         recent = await backend.get_recent_changes("myorg/myapp", datetime.min)
         assert len(recent) == 1
-        print("✅ Recent changes query works")
         
-        print("\n✅ MILESTONE 6 COMPLETE")
         print("\nKey features:")
-        print("  - Repository scoping ✅")
-        print("  - Branch scoping ✅")
-        print("  - No cross-contamination ✅")
-        print("  - Graph traversal ready (production mode) ✅")
     
     asyncio.run(test_milestone6())

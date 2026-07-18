@@ -1,5 +1,5 @@
 """
-Milestone 8: Real Graphiti/Neo4j Integration Test
+CoreReal Graphiti/Neo4j Integration Test
 
 This proves repository scoping works with REAL database, not just mocks.
 """
@@ -26,7 +26,6 @@ class RealGraphitiBackend:
         try:
             from neo4j import GraphDatabase
             self.driver = GraphDatabase.driver(uri, auth=(user, password))
-            print(f"✅ Connected to Neo4j at {uri}")
         except ImportError:
             print("⚠️  neo4j package not installed - using HTTP API fallback")
             self.driver = None
@@ -44,7 +43,6 @@ class RealGraphitiBackend:
             if not hasattr(self, '_mock_memories'):
                 self._mock_memories = []
             self._mock_memories.append(memory)
-            print(f"✅ Stored (mock): {memory.title}")
             return
         
         def _store_tx(tx):
@@ -81,7 +79,6 @@ class RealGraphitiBackend:
         
         with self.driver.session() as session:
             session.execute_write(_store_tx)
-            print(f"✅ Stored in Neo4j: {memory.title}")
     
     async def retrieve(self, context: RetrievalContext, limit: int = 10) -> list[Memory]:
         """Retrieve memories with repository scoping."""
@@ -163,7 +160,6 @@ async def test_repository_scoping():
     """Test that repository scoping prevents cross-contamination."""
     
     print("=" * 70)
-    print("MILESTONE 8: Real Graphiti Repository Scoping Test")
     print("=" * 70)
     
     backend = RealGraphitiBackend()
@@ -223,7 +219,6 @@ async def test_repository_scoping():
     assert not any("This should NOT appear" in m.summary for m in results_a), \
         "Repo B memory leaked into Repo A!"
     
-    print("✅ Repo A has NO Repo B memories")
     
     # 4. Query Repo B
     print("\n4. Querying Repo B...")
@@ -247,7 +242,6 @@ async def test_repository_scoping():
     assert not any("TokenService" in m.summary for m in results_b), \
         "Repo A memory leaked into Repo B!"
     
-    print("✅ Repo B has NO Repo A memories")
     
     # 5. Verify isolation
     print("\n5. Verifying repository isolation...")
@@ -258,7 +252,6 @@ async def test_repository_scoping():
     overlap = repo_a_ids & repo_b_ids
     
     assert len(overlap) == 0, f"Found overlapping memories: {overlap}"
-    print("✅ NO cross-repository contamination")
     
     # Cleanup
     print("\n6. Cleaning up...")
@@ -267,13 +260,11 @@ async def test_repository_scoping():
     backend.close()
     
     print("\n" + "=" * 70)
-    print("✅ MILESTONE 8 COMPLETE")
     print("=" * 70)
     print("\nKey Findings:")
     print("  - Repository scoping works (with real database)")
     print("  - NO cross-contamination")
     print("  - Memories isolated by repository + branch")
-    print("\n✅ Architecture PROVEN in real database")
 
 
 if __name__ == "__main__":

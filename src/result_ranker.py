@@ -1,5 +1,5 @@
 """
-Milestone 12: Multi-Factor Ranking
+CoreMulti-Factor Ranking
 
 Replace simple confidence ranking with composite scoring:
   relevance * confidence * freshness * repo_match * task_intent
@@ -108,7 +108,6 @@ async def test_multi_factor_ranking():
     """Test multi-factor ranking vs simple confidence ranking."""
     
     print("=" * 70)
-    print("MILESTONE 12: Multi-Factor Ranking")
     print("=" * 70)
     
     # Setup
@@ -183,7 +182,6 @@ async def test_multi_factor_ranking():
     
     print(f"   Stored {len(memories)} memories")
     
-    # Test ranking for auth task
     print("\n2. Testing ranking for: 'Implement authentication endpoint'")
     
     context = RetrievalContext(
@@ -238,7 +236,6 @@ async def test_multi_factor_ranking():
     print(f"   NEW top result: {new_top}")
     
     if old_top != new_top:
-        print(f"\n   ✅ Ranking improved!")
         print(f"   NEW ranking considers:")
         print(f"     - Relevance to task")
         print(f"     - Age of memory")
@@ -263,7 +260,6 @@ async def test_multi_factor_ranking():
     print(f"     - Better intent match: {calculate_intent_match(winner, context.task):.2f} vs {calculate_intent_match(loser, context.task):.2f}")
     print(f"     - Fresher: {calculate_freshness(winner):.2f} vs {calculate_freshness(loser):.2f}")
     
-    # Test irrelevant memory should score low
     print("\n8. Verifying irrelevant memories score low...")
     
     db_memory = next(m for m in memories if "Database" in m.title)
@@ -276,7 +272,6 @@ async def test_multi_factor_ranking():
     print(f"   Database memory score: {db_score:.3f}")
     
     assert auth_score > db_score, "Auth memory should score higher for auth task!"
-    print(f"   ✅ Irrelevant memories correctly rank lower")
     
     # Cleanup
     print("\n9. Cleaning up...")
@@ -284,7 +279,6 @@ async def test_multi_factor_ranking():
     backend.close()
     
     print("\n" + "=" * 70)
-    print("✅ MILESTONE 12 COMPLETE")
     print("=" * 70)
     
     print("\nKey Findings:")
@@ -298,7 +292,6 @@ async def test_multi_factor_ranking():
     print("  - Recent, relevant memories rank higher")
     print("  - Task intent alignment improves results")
     
-    print("\n✅ Multi-factor ranking PROVEN superior")
 
 
 if __name__ == "__main__":

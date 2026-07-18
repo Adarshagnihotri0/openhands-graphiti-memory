@@ -1,5 +1,5 @@
 """
-Milestone 2: MockBackend for testing
+CoreMockBackend for testing
 """
 from abc import ABC, abstractmethod
 from milestone1_models import Memory, MemoryCategory, RetrievalContext
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     import asyncio
     
     async def test_milestone2():
-        print("Testing Milestone 2: MockBackend")
+        print("Testing CoreMockBackend")
         
         backend = MockBackend()
         
@@ -60,9 +60,7 @@ if __name__ == "__main__":
         )
         await backend.store(m2)
         
-        print(f"✅ Stored {len(backend.memories)} memories")
         
-        # Test retrieval
         ctx = RetrievalContext(
             task="auth",
             repository="myorg/myapp",
@@ -72,12 +70,9 @@ if __name__ == "__main__":
         
         results = await backend.retrieve(ctx)
         assert len(results) >= 1
-        print(f"✅ Retrieved {len(results)} memories")
         
         # Verify content
         assert any("TokenService" in m.summary for m in results)
-        print("✅ Memory content correct")
         
-        print("\n✅ MILESTONE 2 COMPLETE")
     
     asyncio.run(test_milestone2())

@@ -1,5 +1,5 @@
 """
-Milestone 9: Persistence Validation
+CorePersistence Validation
 
 Prove that memories survive agent restart.
 """
@@ -13,7 +13,6 @@ async def test_persistence():
     """Test that memories persist across restarts."""
     
     print("=" * 70)
-    print("MILESTONE 9: Persistence Validation")
     print("=" * 70)
     
     # 1. Create backend and store memory
@@ -78,7 +77,6 @@ async def test_persistence():
     assert retrieved_memory.confidence == memory.confidence, "Confidence mismatch"
     assert retrieved_memory.repository == memory.repository, "Repository mismatch"
     
-    print("\n✅ All fields preserved after restart")
     
     # 6. Cleanup
     print("\n6. Cleaning up...")
@@ -86,13 +84,11 @@ async def test_persistence():
     backend2.close()
     
     print("\n" + "=" * 70)
-    print("✅ MILESTONE 9 COMPLETE")
     print("=" * 70)
     print("\nKey Findings:")
     print("  - Memories persist across connection close")
     print("  - All metadata preserved")
     print("  - Repository context intact")
-    print("\n✅ Persistence PROVEN")
 
 
 if __name__ == "__main__":
