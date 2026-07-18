@@ -4,3 +4,8 @@
 *.pem  
 *_key.json
 credentials.*
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
