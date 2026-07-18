@@ -294,28 +294,6 @@ These are unknowns (not "good" or "bad", just untested):
 
 ---
 
-## Roadmap
-
-### Phase 1: Validation (Current)
-- [ ] Entity extraction benchmarks
-- [ ] Retrieval quality metrics
-- [ ] Admission precision tracking
-- [ ] Performance baseline at 10K episodes
-
-### Phase 2: Production Hardening
-- [ ] Error handling robustness tests
-- [ ] Concurrent access safety
-- [ ] Memory cleanup/expiration policies
-- [ ] Monitoring and alerting
-
-### Phase 3: Optimization
-- [ ] Admission policy ML model
-- [ ] Adaptive filtering based on retrieval success
-- [ ] Query optimization
-- [ ] Caching strategies
-
----
-
 ## References
 
 - [Graphiti Documentation](https://help.getzep.com/graphiti)
