@@ -108,23 +108,20 @@ Not implemented:
 
 ```
 openhands-graphiti-memory/
-├── src/
-│   ├── knowledge_admission_mvp.py       # Main implementation
-│   ├── milestone1_models.py            # Data models
-│   ├── milestone2_backend.py           # Backend interface
-│   ├── milestone3_builder.py           # Pipeline builder
-│   ├── milestone4_classifier.py        # Admission policy
-│   ├── milestone5_provider.py          # Graphiti provider
-│   ├── milestone6_graphiti.py          # Graphiti adapter
-│   └── test_knowledge_admission.py     # Unit tests
-├── docs/
-│   ├── GRAPHITI_ARCHITECTURE_AUDIT.md  # Verification of Graphiti capabilities
-│   ├── HONEST_ASSESSMENT_VALIDATION_GAP.md  # What's missing for production
-│   └── KNOWLEDGE_ADMISSION_MVP_COMPLETE.md   # Usage guide
-├── examples/
-│   └── quickstart.py                    # Example usage
-├── pyproject.toml                       # Dependencies
-└── docker-compose.yml                   # Neo4j setup
+├── src/                          # Source code
+│   ├── knowledge_admission_mvp.py
+│   ├── data_models.py
+│   ├── backend_interface.py
+│   ├── pipeline_builder.py
+│   ├── admission_classifier.py
+│   ├── graphiti_provider.py
+│   ├── graphiti_adapter.py
+│   └── graphiti_memory/         # Main memory module
+├── tests/                        # Test suite
+├── examples/                     # Usage examples
+├── scripts/                      # Utility scripts
+├── mocks/                        # Test mocks
+└── pyproject.toml                # Package config
 ```
 
 ---
@@ -158,7 +155,7 @@ NEO4J_PASSWORD=password
 
 3. Verify installation:
 ```bash
-python verify_installation.sh
+bash scripts/verify_installation.sh
 ```
 
 ---
@@ -232,13 +229,13 @@ Automatic rejection of:
 
 ```bash
 # Run all tests
-pytest src/test_knowledge_admission.py -v
+pytest tests/ -v
 
 # Run with coverage
-pytest src/test_knowledge_admission.py --cov=src
+pytest tests/ --cov=src
 
 # Specific test
-pytest src/test_knowledge_admission.py::TestAdmissionPolicy -v
+pytest tests/test_knowledge_admission.py -v
 ```
 
 Test coverage: 27 tests
@@ -303,28 +300,6 @@ These are unknowns (not "good" or "bad", just untested):
 
 ---
 
-## Documentation Files
-
-- `docs/GRAPHITI_ARCHITECTURE_AUDIT.md` - Verification of what Graphiti actually does
-- `docs/HONEST_ASSESSMENT_VALIDATION_GAP.md` - What's missing for production use
-- `docs/KNOWLEDGE_ADMISSION_MVP_COMPLETE.md` - Implementation details
-
----
-
 ## License
 
 MIT
-
----
-
-## Contributing
-
-See `docs/HONEST_ASSESSMENT_VALIDATION_GAP.md` for validation roadmap.
-
-Contributions welcome for:
-- Benchmark implementations
-- Test coverage improvements
-- Documentation clarifications
-- Bug fixes
-
-For major changes, open an issue first to discuss scope.
