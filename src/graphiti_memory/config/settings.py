@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+
 from typing import Literal
 
 from pydantic import Field, field_validator
@@ -29,6 +31,20 @@ class GraphitiConfig(BaseSettings):
     llm_model: str = Field(default="gpt-4o-mini", description="LLM model name")
     llm_temperature: float = Field(default=0.0, ge=0.0, le=2.0, description="LLM temperature")
     llm_api_key: str | None = Field(default=None, description="LLM API key")
+    llm_base_url: str | None = Field(default=None, description="LLM API base URL (for proxies)")
+    
+    # Proxy port detection settings (comma-separated for easier env var usage)
+    proxy_ports: str = Field(
+        default="2999,3000", 
+        description="Comma-separated ports to check for proxy (e.g., '2999,3000')"
+    )
+    proxy_timeout: int = Field(
+        default=2, ge=1, le=10, description="Timeout in seconds for port detection"
+    )
+    
+    def get_proxy_ports(self) -> list[int]:
+        """Parse proxy ports from comma-separated string."""
+        return [int(p.strip()) for p in self.proxy_ports.split(",")]
 
     # Embedding settings
     embedder_provider: Literal["openai", "voyage", "sentence_transformers"] = Field(

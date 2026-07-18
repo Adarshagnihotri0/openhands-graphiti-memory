@@ -50,6 +50,7 @@ async def test_pre_task_hook_automatic():
     # Mock the Graphiti client
     integration.client = AsyncMock()
     integration.service = AsyncMock()
+    integration._initialized = True  # Prevent initialize() from overwriting mocks
     
     # Mock search results
     mock_memory = ArchitectureMemory(
@@ -105,6 +106,7 @@ async def test_post_task_hook_automatic():
     integration.client = AsyncMock()
     integration.service = AsyncMock()
     integration.logger = MagicMock()
+    integration._initialized = True  # Prevent initialize() from overwriting mocks
     
     # Execute hook with bug fix content
     result = await integration.post_task_hook(
@@ -147,6 +149,7 @@ async def test_no_manual_mcp_calls():
     # Mock client to track calls
     integration.client = AsyncMock()
     integration.service = MagicMock()
+    integration._initialized = True  # Prevent initialize() from overwriting mocks
     
     # Service search should be called by hook, not manual invocation
     integration.service.search_memories = AsyncMock(return_value=[])
@@ -396,6 +399,7 @@ async def test_e2e_automatic_memory_workflow():
     integration.client = AsyncMock()
     integration.service = MagicMock()
     integration.logger = MagicMock()
+    integration._initialized = True  # Prevent initialize() from overwriting mocks
     
     # PHASE 1: Initial retrieval (empty memory)
     print("Phase 1: Initial retrieval (no prior knowledge)...")
@@ -442,6 +446,7 @@ async def test_e2e_automatic_memory_workflow():
     integration3 = OpenHandsMemoryIntegration(config)
     integration3.client = AsyncMock()
     integration3.service = MagicMock()
+    integration3._initialized = True  # Prevent initialize() from overwriting mocks
     
     # Mock retrieval of stored knowledge
     stored_knowledge = BugFixMemory(

@@ -280,7 +280,7 @@ class ContextBuilder:
             graphiti_count = sum(1 for s in selected if s.source == "graphiti")
             code_count = sum(1 for s in selected if s.source == "code_index")
             
-            if graphiti_count >= self.max_memories and code_count >= self.max_code_symbols:
+            if graphiti_count >= self.max_memories or code_count >= self.max_code_symbols:
                 break
         
         return selected

@@ -299,8 +299,7 @@ class TestConfiguration:
         """Test configuration validation."""
         # Invalid group_id should raise error
         with pytest.raises(ValueError):
-            config = GraphitiConfig()
-            config.group_id = "invalid group id!"
+            config = GraphitiConfig(group_id="invalid group id!")
 
 
 @pytest.mark.asyncio
@@ -309,17 +308,155 @@ class TestMemoryService:
 
     async def test_store_and_retrieve_memory(self, config):
         """Test storing and retrieving a memory."""
-        # This would require a running Graphiti instance
-        # Skip in unit tests
-        pytest.skip("Requires running Graphiti instance")
+        from graphiti_memory.client.graphiti_client import GraphitiClient
+        from graphiti_memory.service.memory_service import MemoryService
+        from graphiti_memory.models import ArchitectureMemory, MemoryQuery
+        
+        # Skip if no API key
+        import os
+        if not os.getenv("OPENAI_API_KEY"):
+            pytest.skip("Requires OPENAI_API_KEY environment variable")
+        
+        # Initialize client and service
+        logger = MemoryLogger(config)
+        client = GraphitiClient(config, logger)
+        await client.initialize()
+        
+        scorer = MemoryScorer(config, logger)
+        service = MemoryService(config, client, scorer, logger)
+        
+        try:
+            # Store a memory
+            memory = ArchitectureMemory(
+                title="Test Architecture",
+                content="TestService depends on MockService for testing",
+                component_type="service",
+                dependencies=["MockService"],
+                repository="test_repo",
+                confidence=0.9
+            )
+            
+            await service.store_memory(memory)
+            
+            # Retrieve it
+            query = MemoryQuery(
+                query_text="Test Architecture",
+                repositories=["test_repo"],
+                limit=1
+            )
+            
+            results = await service.search_memories(query)
+            
+            assert len(results) > 0, "Should retrieve stored memory"
+            assert results[0].memory.title == "Test Architecture"
+            
+        finally:
+            await client.close()
 
     async def test_search_memories(self, config):
         """Test searching for memories."""
-        pytest.skip("Requires running Graphiti instance")
+        from graphiti_memory.client.graphiti_client import GraphitiClient
+        from graphiti_memory.service.memory_service import MemoryService
+        from graphiti_memory.models import DecisionMemory, MemoryQuery
+        
+        import os
+        if not os.getenv("OPENAI_API_KEY"):
+            pytest.skip("Requires OPENAI_API_KEY environment variable")
+        
+        logger = MemoryLogger(config)
+        client = GraphitiClient(config, logger)
+        await client.initialize()
+        
+        scorer = MemoryScorer(config, logger)
+        service = MemoryService(config, client, scorer, logger)
+        
+        try:
+            # Store a decision
+            memory = DecisionMemory(
+                title="Test Decision",
+                content="We chose PostgreSQL for ACID compliance",
+                decision_type="database",
+                rationale="Need ACID transactions",
+                alternatives_considered=["MongoDB"],
+                repository="test_repo",
+                confidence=0.85
+            )
+            
+            await service.store_memory(memory)
+            
+            # Search for it
+            query = MemoryQuery(
+                query_text="database choice",
+                repositories=["test_repo"],
+                limit=5
+            )
+            
+            results = await service.search_memories(query)
+            
+            assert len(results) > 0, "Should find relevant memories"
+            
+        finally:
+            await client.close()
 
     async def test_deduplication(self, config):
         """Test duplicate detection."""
-        pytest.skip("Requires running Graphiti instance")
+        from graphiti_memory.client.graphiti_client import GraphitiClient
+        from graphiti_memory.service.memory_service import MemoryService
+        from graphiti_memory.models import BugFixMemory, MemoryQuery
+        
+        import os
+        if not os.getenv("OPENAI_API_KEY"):
+            pytest.skip("Requires OPENAI_API_KEY environment variable")
+        
+        logger = MemoryLogger(config)
+        client = GraphitiClient(config, logger)
+        await client.initialize()
+        
+        scorer = MemoryScorer(config, logger)
+        service = MemoryService(config, client, scorer, logger)
+        
+        try:
+            # Store same memory twice
+            memory1 = BugFixMemory(
+                title="Duplicate Test",
+                content="Fixed bug in test module",
+                bug_type="logic",
+                root_cause="Incorrect condition",
+                solution="Fixed condition",
+                prevention="Add tests",
+                repository="test_repo",
+                confidence=0.8
+            )
+            
+            memory2 = BugFixMemory(
+                title="Duplicate Test",
+                content="Fixed bug in test module",
+                bug_type="logic",
+                root_cause="Incorrect condition",
+                solution="Fixed condition",
+                prevention="Add tests",
+                repository="test_repo",
+                confidence=0.8
+            )
+            
+            await service.store_memory(memory1)
+            await service.store_memory(memory2)
+            
+            # Should deduplicate
+            query = MemoryQuery(
+                query_text="bug fix test",
+                repositories=["test_repo"],
+                limit=10
+            )
+            
+            results = await service.search_memories(query)
+            
+            # Should have only one result (deduped)
+            duplicates = [r for r in results if r.memory.title == "Duplicate Test"]
+            assert len(duplicates) <= 1, "Should deduplicate similar memories"
+            
+        finally:
+            await client.close()
 
 
 if __name__ == "__main__":

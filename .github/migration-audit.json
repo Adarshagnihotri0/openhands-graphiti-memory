@@ -1,0 +1,128 @@
+[
+  {
+    "file": "src/backend_interface.py",
+    "module": "backend_interface",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/data_models.py",
+    "module": "data_models",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/admission_classifier.py",
+    "module": "admission_classifier",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/feedback_processor.py",
+    "module": "feedback_processor",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/graphiti_adapter.py",
+    "module": "graphiti_adapter",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/graphiti_client.py",
+    "module": "graphiti_client",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": true,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/graphiti_provider.py",
+    "module": "graphiti_provider",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/memory_loader.py",
+    "module": "memory_loader",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/metrics_collector.py",
+    "module": "metrics_collector",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/performance_metrics.py",
+    "module": "performance_metrics",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/persistence_layer.py",
+    "module": "persistence_layer",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/pipeline_builder.py",
+    "module": "pipeline_builder",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  },
+  {
+    "file": "src/result_ranker.py",
+    "module": "result_ranker",
+    "import_count": 0,
+    "in_tests": false,
+    "in_examples": false,
+    "in_readme": false,
+    "safe_to_archive": true
+  },
+  {
+    "file": "src/knowledge_admission_mvp.py",
+    "module": "knowledge_admission_mvp",
+    "import_count": 0,
+    "in_tests": true,
+    "in_examples": false,
+    "in_readme": true,
+    "safe_to_archive": false
+  }
+]

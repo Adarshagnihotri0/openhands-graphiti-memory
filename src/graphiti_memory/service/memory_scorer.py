@@ -78,7 +78,7 @@ class MemoryScorer:
         for pattern in self.durable_patterns:
             match = re.search(pattern, content_lower, re.IGNORECASE)
             if match:
-                durable_score += 0.15
+                durable_score += 0.6
                 matched_types.append(match.group(1))
 
         # Adjust score based on content length and structure

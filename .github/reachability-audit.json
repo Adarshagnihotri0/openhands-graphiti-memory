@@ -1,0 +1,1260 @@
+{
+  "phase_1_structure": {
+    "python_files": [
+      "mocks/__init__.py",
+      "mocks/fake_memory_provider.py",
+      "tests/test_knowledge_admission.py",
+      "tests/test_milestone0.py",
+      "tests/__init__.py",
+      "examples/__init__.py",
+      "examples/quickstart.py",
+      "examples/integrate_memory.py",
+      "sdk_models/__init__.py",
+      "src/persistence_layer.py",
+      "src/result_ranker.py",
+      "src/graphiti_adapter.py",
+      "src/performance_metrics.py",
+      "src/admission_classifier.py",
+      "src/pipeline_builder.py",
+      "src/metrics_collector.py",
+      "src/memory_loader.py",
+      "src/backend_interface.py",
+      "src/data_models.py",
+      "src/feedback_processor.py",
+      "src/graphiti_provider.py",
+      "src/graphiti_client.py",
+      "src/knowledge_admission_mvp.py",
+      "src/graphiti_memory/models.py",
+      "src/graphiti_memory/__init__.py",
+      "src/graphiti_memory/pipeline.py",
+      "src/graphiti_memory/exceptions.py",
+      "src/graphiti_memory/config/__init__.py",
+      "src/graphiti_memory/config/settings.py",
+      "src/graphiti_memory/integration/openhands_hooks.py",
+      "src/graphiti_memory/integration/context_builder.py",
+      "src/graphiti_memory/integration/__init__.py",
+      "src/graphiti_memory/tests/test_memory_system.py",
+      "src/graphiti_memory/tests/test_automatic_memory.py",
+      "src/graphiti_memory/tests/__init__.py",
+      "src/graphiti_memory/utils/logging.py",
+      "src/graphiti_memory/utils/__init__.py",
+      "src/graphiti_memory/mcp/server.py",
+      "src/graphiti_memory/mcp/__init__.py",
+      "src/graphiti_memory/service/__init__.py",
+      "src/graphiti_memory/service/memory_scorer.py",
+      "src/graphiti_memory/service/memory_service.py",
+      "src/graphiti_memory/client/__init__.py",
+      "src/graphiti_memory/client/graphiti_client.py"
+    ],
+    "packages": [
+      "mocks",
+      "tests",
+      "examples",
+      "sdk_models",
+      "src/graphiti_memory",
+      "src/graphiti_memory/config",
+      "src/graphiti_memory/integration",
+      "src/graphiti_memory/tests",
+      "src/graphiti_memory/utils",
+      "src/graphiti_memory/mcp",
+      "src/graphiti_memory/service",
+      "src/graphiti_memory/client"
+    ],
+    "directories": [
+      "mocks",
+      "tests",
+      "examples",
+      "scripts",
+      "sdk_models",
+      "src",
+      "src/graphiti_memory",
+      "src/graphiti_memory/config",
+      "src/graphiti_memory/integration",
+      "src/graphiti_memory/tests",
+      "src/graphiti_memory/utils",
+      "src/graphiti_memory/mcp",
+      "src/graphiti_memory/service",
+      "src/graphiti_memory/client"
+    ]
+  },
+  "phase_2_dependencies": {
+    "by_module": {
+      "mocks/__init__.py": [],
+      "mocks/fake_memory_provider.py": [
+        "openhands.sdk.llm",
+        "openhands.sdk.llm.Message",
+        "openhands.sdk.llm.TextContent",
+        "asyncio"
+      ],
+      "tests/test_knowledge_admission.py": [
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "unittest.mock",
+        "unittest.mock.Mock",
+        "unittest.mock.AsyncMock",
+        "unittest.mock.patch",
+        "pytest",
+        "knowledge_admission_mvp",
+        "knowledge_admission_mvp.GraphitiAdapter",
+        "knowledge_admission_mvp.MetadataEnricher",
+        "knowledge_admission_mvp.AdmissionPolicy",
+        "knowledge_admission_mvp.ExecutionRecorder",
+        "knowledge_admission_mvp.BasicGovernance",
+        "knowledge_admission_mvp.KnowledgeAdmissionPipeline",
+        "knowledge_admission_mvp.ExecutionRecord",
+        "knowledge_admission_mvp.AdmissionDecision"
+      ],
+      "tests/test_milestone0.py": [
+        "asyncio",
+        "sys",
+        "openhands.sdk.agent",
+        "openhands.sdk.agent.Agent",
+        "openhands.sdk.llm",
+        "openhands.sdk.llm.LLM",
+        "openhands.sdk.conversation",
+        "openhands.sdk.conversation.LocalConversation",
+        "openhands.sdk.event",
+        "openhands.sdk.event.MessageEvent",
+        "fake_memory_provider",
+        "fake_memory_provider.FakeMemoryProvider",
+        "pydantic",
+        "pydantic.SecretStr",
+        "openhands.sdk.testing",
+        "openhands.sdk.testing.TestLLM"
+      ],
+      "tests/__init__.py": [],
+      "examples/__init__.py": [],
+      "examples/quickstart.py": [
+        "asyncio",
+        "os",
+        "datetime",
+        "datetime.datetime",
+        "sys",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.client.graphiti_client",
+        "graphiti_memory.client.graphiti_client.GraphitiClient",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.service.memory_service",
+        "graphiti_memory.service.memory_service.MemoryService",
+        "graphiti_memory.models",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger"
+      ],
+      "examples/integrate_memory.py": [
+        "asyncio",
+        "sys",
+        "subprocess",
+        "pathlib",
+        "pathlib.Path",
+        "milestone8_real_graphiti",
+        "milestone8_real_graphiti.RealGraphitiBackend",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext"
+      ],
+      "sdk_models/__init__.py": {
+        "error": "unterminated string literal (detected at line 58) (__init__.py, line 58)"
+      },
+      "src/persistence_layer.py": [
+        "asyncio",
+        "time",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "milestone8_real_graphiti",
+        "milestone8_real_graphiti.RealGraphitiBackend"
+      ],
+      "src/result_ranker.py": [
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "datetime.timedelta",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "milestone8_real_graphiti",
+        "milestone8_real_graphiti.RealGraphitiBackend"
+      ],
+      "src/graphiti_adapter.py": [
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "milestone2_backend",
+        "milestone2_backend.MemoryBackend",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "asyncio"
+      ],
+      "src/performance_metrics.py": {
+        "error": "expected an indented block after 'if' statement on line 252 (performance_metrics.py, line 253)"
+      },
+      "src/admission_classifier.py": [
+        "re",
+        "enum",
+        "enum.Enum"
+      ],
+      "src/pipeline_builder.py": [
+        "collections",
+        "collections.defaultdict",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryConfig",
+        "openhands.sdk.llm",
+        "openhands.sdk.llm.Message",
+        "openhands.sdk.llm.TextContent",
+        "milestone1_models",
+        "milestone1_models.MemoryCategory"
+      ],
+      "src/metrics_collector.py": [
+        "time",
+        "asyncio",
+        "dataclasses",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.MemoryConfig",
+        "milestone2_backend",
+        "milestone2_backend.MockBackend",
+        "milestone3_builder",
+        "milestone3_builder.ContextBuilder",
+        "milestone4_classifier",
+        "milestone4_classifier.IntentClassifier",
+        "milestone5_provider",
+        "milestone5_provider.MemoryProvider",
+        "milestone6_graphiti",
+        "milestone6_graphiti.GraphitiBackend",
+        "milestone1_models",
+        "milestone1_models.RetrievalContext"
+      ],
+      "src/memory_loader.py": [
+        "os",
+        "json",
+        "logging",
+        "pathlib",
+        "pathlib.Path",
+        "typing",
+        "typing.Optional",
+        "openhands.sdk.agent",
+        "openhands.sdk.agent.Agent",
+        "milestone5_provider",
+        "milestone5_provider.MemoryProvider",
+        "milestone8_real_graphiti",
+        "milestone8_real_graphiti.RealGraphitiBackend",
+        "milestone3_builder",
+        "milestone3_builder.ContextBuilder",
+        "milestone4_classifier",
+        "milestone4_classifier.IntentClassifier",
+        "milestone1_models",
+        "milestone1_models.MemoryConfig",
+        "openhands.sdk.agent",
+        "openhands.sdk.agent.Agent"
+      ],
+      "src/backend_interface.py": [
+        "abc",
+        "abc.ABC",
+        "abc.abstractmethod",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "asyncio"
+      ],
+      "src/data_models.py": [
+        "dataclasses",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "datetime",
+        "datetime.datetime",
+        "enum",
+        "enum.Enum",
+        "typing",
+        "typing.Any"
+      ],
+      "src/feedback_processor.py": [
+        "asyncio",
+        "dataclasses",
+        "dataclasses.dataclass",
+        "enum",
+        "enum.Enum",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "milestone8_real_graphiti",
+        "milestone8_real_graphiti.RealGraphitiBackend"
+      ],
+      "src/graphiti_provider.py": [
+        "asyncio",
+        "logging",
+        "milestone1_models",
+        "milestone1_models.MemoryConfig",
+        "milestone1_models.RetrievalContext",
+        "milestone2_backend",
+        "milestone2_backend.MemoryBackend",
+        "milestone3_builder",
+        "milestone3_builder.ContextBuilder",
+        "milestone4_classifier",
+        "milestone4_classifier.IntentClassifier",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone2_backend",
+        "milestone2_backend.MockBackend",
+        "openhands.sdk.llm",
+        "openhands.sdk.llm.Message",
+        "openhands.sdk.conversation",
+        "openhands.sdk.conversation.LocalConversation",
+        "asyncio"
+      ],
+      "src/graphiti_client.py": [
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "milestone1_models",
+        "milestone1_models.Memory",
+        "milestone1_models.MemoryCategory",
+        "milestone1_models.RetrievalContext",
+        "neo4j",
+        "neo4j.GraphDatabase"
+      ],
+      "src/knowledge_admission_mvp.py": [
+        "logging",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Optional",
+        "typing.List",
+        "typing.Dict",
+        "typing.Any",
+        "dataclasses",
+        "dataclasses.dataclass",
+        "re",
+        "graphiti_core",
+        "graphiti_core.Graphiti",
+        "graphiti_core.driver.neo4j",
+        "graphiti_core.driver.neo4j.Neo4jDriver",
+        "graphiti_core.nodes",
+        "graphiti_core.nodes.EntityNode",
+        "graphiti_core.edges",
+        "graphiti_core.edges.EntityEdge",
+        "graphiti_core.search.search_config_recipes",
+        "graphiti_core.search.search_config_recipes.EDGE_HYBRID_SEARCH_RRF"
+      ],
+      "src/graphiti_memory/models.py": [
+        "__future__",
+        "__future__.annotations",
+        "datetime",
+        "datetime.datetime",
+        "enum",
+        "enum.Enum",
+        "typing",
+        "typing.Any",
+        "uuid",
+        "uuid.UUID",
+        "uuid.uuid4",
+        "pydantic",
+        "pydantic.BaseModel",
+        "pydantic.Field",
+        "pydantic.field_validator"
+      ],
+      "src/graphiti_memory/__init__.py": [],
+      "src/graphiti_memory/pipeline.py": [
+        "__future__",
+        "__future__.annotations",
+        "json",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "graphiti_memory.client.graphiti_client",
+        "graphiti_memory.client.graphiti_client.GraphitiClient",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.models",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.MemoryType",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.service.memory_service",
+        "graphiti_memory.service.memory_service.MemoryService",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger",
+        "graphiti_memory.models",
+        "graphiti_memory.models.ImplementationMemory"
+      ],
+      "src/graphiti_memory/exceptions.py": [
+        "__future__",
+        "__future__.annotations",
+        "typing",
+        "typing.Any"
+      ],
+      "src/graphiti_memory/config/__init__.py": [],
+      "src/graphiti_memory/config/settings.py": [
+        "__future__",
+        "__future__.annotations",
+        "typing",
+        "typing.Literal",
+        "pydantic",
+        "pydantic.Field",
+        "pydantic.field_validator",
+        "pydantic_settings",
+        "pydantic_settings.BaseSettings",
+        "pydantic_settings.SettingsConfigDict",
+        "re"
+      ],
+      "src/graphiti_memory/integration/openhands_hooks.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "typing.Callable",
+        "dataclasses",
+        "dataclasses.dataclass",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.client.graphiti_client",
+        "graphiti_memory.client.graphiti_client.GraphitiClient",
+        "graphiti_memory.service.memory_service",
+        "graphiti_memory.service.memory_service.MemoryService",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.models",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.MemoryBase",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger"
+      ],
+      "src/graphiti_memory/integration/context_builder.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "dataclasses",
+        "dataclasses.dataclass",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig"
+      ],
+      "src/graphiti_memory/integration/__init__.py": [],
+      "src/graphiti_memory/tests/test_memory_system.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "uuid",
+        "uuid.uuid4",
+        "pytest",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.models",
+        "graphiti_memory.models.ArchitectureMemory",
+        "graphiti_memory.models.BugFixMemory",
+        "graphiti_memory.models.ConfidenceLevel",
+        "graphiti_memory.models.DecisionMemory",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.MemoryType",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger"
+      ],
+      "src/graphiti_memory/tests/test_automatic_memory.py": [
+        "asyncio",
+        "pytest",
+        "datetime",
+        "datetime.datetime",
+        "unittest.mock",
+        "unittest.mock.AsyncMock",
+        "unittest.mock.MagicMock",
+        "unittest.mock.patch",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.integration.openhands_hooks",
+        "graphiti_memory.integration.openhands_hooks.OpenHandsMemoryIntegration",
+        "graphiti_memory.integration.openhands_hooks.TaskContext",
+        "graphiti_memory.integration.context_builder",
+        "graphiti_memory.integration.context_builder.ContextBuilder",
+        "graphiti_memory.models",
+        "graphiti_memory.models.ArchitectureMemory",
+        "graphiti_memory.models.BugFixMemory",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.SearchResult"
+      ],
+      "src/graphiti_memory/tests/__init__.py": [],
+      "src/graphiti_memory/utils/logging.py": [
+        "__future__",
+        "__future__.annotations",
+        "logging",
+        "sys",
+        "contextlib",
+        "contextlib.contextmanager",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "typing.Iterator",
+        "uuid",
+        "uuid.UUID",
+        "structlog",
+        "structlog.dev",
+        "structlog.dev.ConsoleRenderer",
+        "structlog.processors",
+        "structlog.processors.JSONRenderer",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig"
+      ],
+      "src/graphiti_memory/utils/__init__.py": [],
+      "src/graphiti_memory/mcp/server.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "json",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "uuid",
+        "uuid.UUID",
+        "mcp.server",
+        "mcp.server.Server",
+        "mcp.server.stdio",
+        "mcp.server.stdio.stdio_server",
+        "mcp.types",
+        "mcp.types.Tool",
+        "mcp.types.TextContent",
+        "graphiti_memory.client.graphiti_client",
+        "graphiti_memory.client.graphiti_client.GraphitiClient",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.models",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.MemoryType",
+        "graphiti_memory.models.MemoryUpdate",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.service.memory_service",
+        "graphiti_memory.service.memory_service.MemoryService",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger",
+        "os"
+      ],
+      "src/graphiti_memory/mcp/__init__.py": [],
+      "src/graphiti_memory/service/__init__.py": [],
+      "src/graphiti_memory/service/memory_scorer.py": [
+        "__future__",
+        "__future__.annotations",
+        "re",
+        "typing",
+        "typing.Any",
+        "uuid",
+        "uuid.UUID",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.models",
+        "graphiti_memory.models.ArchitectureMemory",
+        "graphiti_memory.models.BugFixMemory",
+        "graphiti_memory.models.ConfidenceLevel",
+        "graphiti_memory.models.ConventionMemory",
+        "graphiti_memory.models.DecisionMemory",
+        "graphiti_memory.models.ImplementationMemory",
+        "graphiti_memory.models.MemoryBase",
+        "graphiti_memory.models.MemoryType",
+        "graphiti_memory.models.RelationshipMemory",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger"
+      ],
+      "src/graphiti_memory/service/memory_service.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "datetime",
+        "datetime.datetime",
+        "datetime.timedelta",
+        "typing",
+        "typing.Any",
+        "uuid",
+        "uuid.UUID",
+        "graphiti_memory.client.graphiti_client",
+        "graphiti_memory.client.graphiti_client.GraphitiClient",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.exceptions",
+        "graphiti_memory.exceptions.DuplicateMemoryError",
+        "graphiti_memory.exceptions.MemoryNotFoundError",
+        "graphiti_memory.exceptions.MemoryStorageError",
+        "graphiti_memory.models",
+        "graphiti_memory.models.ArchitectureMemory",
+        "graphiti_memory.models.BugFixMemory",
+        "graphiti_memory.models.ConfidenceLevel",
+        "graphiti_memory.models.ConventionMemory",
+        "graphiti_memory.models.DecisionMemory",
+        "graphiti_memory.models.ImplementationMemory",
+        "graphiti_memory.models.MemoryBase",
+        "graphiti_memory.models.MemoryQuery",
+        "graphiti_memory.models.MemoryType",
+        "graphiti_memory.models.MemoryUpdate",
+        "graphiti_memory.models.RelationshipMemory",
+        "graphiti_memory.models.SearchResult",
+        "graphiti_memory.service.memory_scorer",
+        "graphiti_memory.service.memory_scorer.MemoryScorer",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger",
+        "graphiti_memory.models",
+        "graphiti_memory.models.RelationType"
+      ],
+      "src/graphiti_memory/client/__init__.py": [],
+      "src/graphiti_memory/client/graphiti_client.py": [
+        "__future__",
+        "__future__.annotations",
+        "asyncio",
+        "contextlib",
+        "contextlib.asynccontextmanager",
+        "datetime",
+        "datetime.datetime",
+        "typing",
+        "typing.Any",
+        "typing.AsyncIterator",
+        "uuid",
+        "uuid.UUID",
+        "graphiti_core",
+        "graphiti_core.Graphiti",
+        "graphiti_core.edges",
+        "graphiti_core.edges.EntityEdge",
+        "graphiti_core.llm_client",
+        "graphiti_core.llm_client.OpenAIClient",
+        "graphiti_core.nodes",
+        "graphiti_core.nodes.EntityNode",
+        "graphiti_core.nodes.EpisodicNode",
+        "tenacity",
+        "tenacity.AsyncRetrying",
+        "tenacity.retry_if_exception_type",
+        "tenacity.stop_after_attempt",
+        "tenacity.wait_exponential",
+        "graphiti_memory.config.settings",
+        "graphiti_memory.config.settings.GraphitiConfig",
+        "graphiti_memory.exceptions",
+        "graphiti_memory.exceptions.ConnectionError",
+        "graphiti_memory.exceptions.GraphOperationError",
+        "graphiti_memory.exceptions.TimeoutError",
+        "graphiti_memory.utils.logging",
+        "graphiti_memory.utils.logging.MemoryLogger",
+        "graphiti_core.llm_client",
+        "graphiti_core.llm_client.OpenAIClient",
+        "graphiti_core.llm_client.OpenAIConfig"
+      ]
+    },
+    "reverse": {
+      "openhands.sdk.llm": [
+        "mocks/fake_memory_provider.py",
+        "tests/test_milestone0.py",
+        "src/pipeline_builder.py",
+        "src/graphiti_provider.py"
+      ],
+      "asyncio": [
+        "mocks/fake_memory_provider.py",
+        "tests/test_knowledge_admission.py",
+        "tests/test_milestone0.py",
+        "examples/quickstart.py",
+        "examples/integrate_memory.py",
+        "src/persistence_layer.py",
+        "src/result_ranker.py",
+        "src/graphiti_adapter.py",
+        "src/metrics_collector.py",
+        "src/backend_interface.py",
+        "src/feedback_processor.py",
+        "src/graphiti_provider.py",
+        "src/graphiti_provider.py",
+        "src/graphiti_client.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "datetime": [
+        "tests/test_knowledge_admission.py",
+        "examples/quickstart.py",
+        "src/result_ranker.py",
+        "src/graphiti_adapter.py",
+        "src/data_models.py",
+        "src/graphiti_client.py",
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/models.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py",
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "unittest.mock": [
+        "tests/test_knowledge_admission.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py"
+      ],
+      "pytest": [
+        "tests/test_knowledge_admission.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py"
+      ],
+      "knowledge_admission_mvp": [
+        "tests/test_knowledge_admission.py"
+      ],
+      "sys": [
+        "tests/test_milestone0.py",
+        "examples/quickstart.py",
+        "examples/integrate_memory.py",
+        "src/graphiti_memory/utils/logging.py"
+      ],
+      "openhands.sdk.agent": [
+        "tests/test_milestone0.py",
+        "src/memory_loader.py",
+        "src/memory_loader.py"
+      ],
+      "openhands.sdk.conversation": [
+        "tests/test_milestone0.py",
+        "src/graphiti_provider.py"
+      ],
+      "openhands.sdk.event": [
+        "tests/test_milestone0.py"
+      ],
+      "fake_memory_provider": [
+        "tests/test_milestone0.py"
+      ],
+      "pydantic": [
+        "tests/test_milestone0.py",
+        "src/graphiti_memory/models.py",
+        "src/graphiti_memory/config/settings.py"
+      ],
+      "openhands.sdk.testing": [
+        "tests/test_milestone0.py"
+      ],
+      "os": [
+        "examples/quickstart.py",
+        "src/memory_loader.py",
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "graphiti_memory.config.settings": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py",
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "graphiti_memory.client.graphiti_client": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_service.py"
+      ],
+      "graphiti_memory.service.memory_scorer": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_service.py"
+      ],
+      "graphiti_memory.service.memory_service": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "graphiti_memory.models": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/tests/test_automatic_memory.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/service/memory_service.py"
+      ],
+      "graphiti_memory.utils.logging": [
+        "examples/quickstart.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "subprocess": [
+        "examples/integrate_memory.py"
+      ],
+      "pathlib": [
+        "examples/integrate_memory.py",
+        "src/memory_loader.py"
+      ],
+      "milestone8_real_graphiti": [
+        "examples/integrate_memory.py",
+        "src/persistence_layer.py",
+        "src/result_ranker.py",
+        "src/memory_loader.py",
+        "src/feedback_processor.py"
+      ],
+      "milestone1_models": [
+        "examples/integrate_memory.py",
+        "src/persistence_layer.py",
+        "src/result_ranker.py",
+        "src/graphiti_adapter.py",
+        "src/pipeline_builder.py",
+        "src/pipeline_builder.py",
+        "src/metrics_collector.py",
+        "src/metrics_collector.py",
+        "src/memory_loader.py",
+        "src/backend_interface.py",
+        "src/feedback_processor.py",
+        "src/graphiti_provider.py",
+        "src/graphiti_provider.py",
+        "src/graphiti_client.py"
+      ],
+      "time": [
+        "src/persistence_layer.py",
+        "src/metrics_collector.py"
+      ],
+      "milestone2_backend": [
+        "src/graphiti_adapter.py",
+        "src/metrics_collector.py",
+        "src/graphiti_provider.py",
+        "src/graphiti_provider.py"
+      ],
+      "typing": [
+        "src/graphiti_adapter.py",
+        "src/memory_loader.py",
+        "src/data_models.py",
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/models.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/exceptions.py",
+        "src/graphiti_memory/config/settings.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py",
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "re": [
+        "src/admission_classifier.py",
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/config/settings.py",
+        "src/graphiti_memory/service/memory_scorer.py"
+      ],
+      "enum": [
+        "src/admission_classifier.py",
+        "src/data_models.py",
+        "src/feedback_processor.py",
+        "src/graphiti_memory/models.py"
+      ],
+      "collections": [
+        "src/pipeline_builder.py"
+      ],
+      "dataclasses": [
+        "src/metrics_collector.py",
+        "src/data_models.py",
+        "src/feedback_processor.py",
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py"
+      ],
+      "milestone3_builder": [
+        "src/metrics_collector.py",
+        "src/memory_loader.py",
+        "src/graphiti_provider.py"
+      ],
+      "milestone4_classifier": [
+        "src/metrics_collector.py",
+        "src/memory_loader.py",
+        "src/graphiti_provider.py"
+      ],
+      "milestone5_provider": [
+        "src/metrics_collector.py",
+        "src/memory_loader.py"
+      ],
+      "milestone6_graphiti": [
+        "src/metrics_collector.py"
+      ],
+      "json": [
+        "src/memory_loader.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "logging": [
+        "src/memory_loader.py",
+        "src/graphiti_provider.py",
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/utils/logging.py"
+      ],
+      "abc": [
+        "src/backend_interface.py"
+      ],
+      "neo4j": [
+        "src/graphiti_client.py"
+      ],
+      "graphiti_core": [
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "graphiti_core.driver.neo4j": [
+        "src/knowledge_admission_mvp.py"
+      ],
+      "graphiti_core.nodes": [
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "graphiti_core.edges": [
+        "src/knowledge_admission_mvp.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "graphiti_core.search.search_config_recipes": [
+        "src/knowledge_admission_mvp.py"
+      ],
+      "__future__": [
+        "src/graphiti_memory/models.py",
+        "src/graphiti_memory/pipeline.py",
+        "src/graphiti_memory/exceptions.py",
+        "src/graphiti_memory/config/settings.py",
+        "src/graphiti_memory/integration/openhands_hooks.py",
+        "src/graphiti_memory/integration/context_builder.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "uuid": [
+        "src/graphiti_memory/models.py",
+        "src/graphiti_memory/tests/test_memory_system.py",
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/mcp/server.py",
+        "src/graphiti_memory/service/memory_scorer.py",
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "pydantic_settings": [
+        "src/graphiti_memory/config/settings.py"
+      ],
+      "graphiti_memory.integration.openhands_hooks": [
+        "src/graphiti_memory/tests/test_automatic_memory.py"
+      ],
+      "graphiti_memory.integration.context_builder": [
+        "src/graphiti_memory/tests/test_automatic_memory.py"
+      ],
+      "contextlib": [
+        "src/graphiti_memory/utils/logging.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "structlog": [
+        "src/graphiti_memory/utils/logging.py"
+      ],
+      "structlog.dev": [
+        "src/graphiti_memory/utils/logging.py"
+      ],
+      "structlog.processors": [
+        "src/graphiti_memory/utils/logging.py"
+      ],
+      "mcp.server": [
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "mcp.server.stdio": [
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "mcp.types": [
+        "src/graphiti_memory/mcp/server.py"
+      ],
+      "graphiti_memory.exceptions": [
+        "src/graphiti_memory/service/memory_service.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "graphiti_core.llm_client": [
+        "src/graphiti_memory/client/graphiti_client.py",
+        "src/graphiti_memory/client/graphiti_client.py"
+      ],
+      "tenacity": [
+        "src/graphiti_memory/client/graphiti_client.py"
+      ]
+    }
+  },
+  "phase_3_execution": {
+    "docker_entrypoint": "CMD [\"uv\", \"run\", \"python\", \"-m\", \"graphiti_memory.mcp.server\"]",
+    "pyproject_scripts": [],
+    "test_files": [
+      "tests/test_knowledge_admission.py",
+      "tests/test_milestone0.py",
+      "src/graphiti_memory/tests/test_memory_system.py",
+      "src/graphiti_memory/tests/test_automatic_memory.py"
+    ],
+    "example_files": [
+      "examples/__init__.py",
+      "examples/quickstart.py",
+      "examples/integrate_memory.py"
+    ],
+    "script_files": [
+      "scripts/verify_installation.sh"
+    ],
+    "mcp_servers": [
+      "src/graphiti_memory/mcp/server.py"
+    ]
+  },
+  "phase_4_reachability": {
+    "mocks": {
+      "path": "mocks/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "mocks.fake_memory_provider": {
+      "path": "mocks/fake_memory_provider.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "tests.test_knowledge_admission": {
+      "path": "tests/test_knowledge_admission.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "tests.test_milestone0": {
+      "path": "tests/test_milestone0.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "tests": {
+      "path": "tests/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "examples": {
+      "path": "examples/__init__.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "examples.quickstart": {
+      "path": "examples/quickstart.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "examples.integrate_memory": {
+      "path": "examples/integrate_memory.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "sdk_models": {
+      "path": "sdk_models/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.persistence_layer": {
+      "path": "src/persistence_layer.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.result_ranker": {
+      "path": "src/result_ranker.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_adapter": {
+      "path": "src/graphiti_adapter.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.performance_metrics": {
+      "path": "src/performance_metrics.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.admission_classifier": {
+      "path": "src/admission_classifier.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.pipeline_builder": {
+      "path": "src/pipeline_builder.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.metrics_collector": {
+      "path": "src/metrics_collector.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "src.memory_loader": {
+      "path": "src/memory_loader.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.backend_interface": {
+      "path": "src/backend_interface.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.data_models": {
+      "path": "src/data_models.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.feedback_processor": {
+      "path": "src/feedback_processor.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_provider": {
+      "path": "src/graphiti_provider.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_client": {
+      "path": "src/graphiti_client.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.knowledge_admission_mvp": {
+      "path": "src/knowledge_admission_mvp.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.models": {
+      "path": "src/graphiti_memory/models.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory": {
+      "path": "src/graphiti_memory/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.pipeline": {
+      "path": "src/graphiti_memory/pipeline.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.exceptions": {
+      "path": "src/graphiti_memory/exceptions.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.config": {
+      "path": "src/graphiti_memory/config/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.config.settings": {
+      "path": "src/graphiti_memory/config/settings.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.integration.openhands_hooks": {
+      "path": "src/graphiti_memory/integration/openhands_hooks.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.integration.context_builder": {
+      "path": "src/graphiti_memory/integration/context_builder.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.integration": {
+      "path": "src/graphiti_memory/integration/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.tests.test_memory_system": {
+      "path": "src/graphiti_memory/tests/test_memory_system.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "src.graphiti_memory.tests.test_automatic_memory": {
+      "path": "src/graphiti_memory/tests/test_automatic_memory.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.tests": {
+      "path": "src/graphiti_memory/tests/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.utils.logging": {
+      "path": "src/graphiti_memory/utils/logging.py",
+      "reachable_from": [],
+      "status": "POSSIBLY_REACHABLE"
+    },
+    "src.graphiti_memory.utils": {
+      "path": "src/graphiti_memory/utils/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.mcp.server": {
+      "path": "src/graphiti_memory/mcp/server.py",
+      "reachable_from": [],
+      "status": "ENTRY_POINT"
+    },
+    "src.graphiti_memory.mcp": {
+      "path": "src/graphiti_memory/mcp/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.service": {
+      "path": "src/graphiti_memory/service/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.service.memory_scorer": {
+      "path": "src/graphiti_memory/service/memory_scorer.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.service.memory_service": {
+      "path": "src/graphiti_memory/service/memory_service.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.client": {
+      "path": "src/graphiti_memory/client/__init__.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    },
+    "src.graphiti_memory.client.graphiti_client": {
+      "path": "src/graphiti_memory/client/graphiti_client.py",
+      "reachable_from": [],
+      "status": "UNREACHABLE"
+    }
+  }
+}

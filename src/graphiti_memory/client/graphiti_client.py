@@ -66,7 +66,7 @@ class GraphitiClient:
                 )
 
                 # Initialize graph indices
-                await self._graphiti.build_indices()
+                await self._graphiti.build_indices_and_constraints()
                 self._initialized = True
 
                 self.logger.logger.info(
@@ -131,12 +131,14 @@ class GraphitiClient:
     def _create_llm_client(self) -> OpenAIClient:
         """Create LLM client based on configuration."""
         # Use OpenAI client by default (supports other providers via API)
-        from graphiti_core.llm_client import OpenAIClient, OpenAIConfig
+        from graphiti_core.llm_client import OpenAIClient
+        from graphiti_core.llm_client.config import LLMConfig
 
-        config = OpenAIConfig(
+        config = LLMConfig(
             api_key=self.config.llm_api_key or "",
             model=self.config.llm_model,
             temperature=self.config.llm_temperature,
+            base_url=self.config.llm_base_url,
         )
 
         return OpenAIClient(config=config)
@@ -179,7 +181,7 @@ class GraphitiClient:
                 client.search(
                     query=query,
                     group_ids=group_ids or [self.config.get_scoped_group_id()],
-                    limit=limit,
+                    num_results=limit,
                 ),
                 "search_nodes",
             )
