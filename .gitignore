@@ -1,0 +1,6 @@
+
+# Security - Never commit sensitive files
+*.key
+*.pem  
+*_key.json
+credentials.*
